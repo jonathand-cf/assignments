@@ -1,11 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 #define CHAR_SIZE 100
 
 char theWord[CHAR_SIZE] = { 0 };
-void is_palindrome(char *theWord)
+bool is_palindrome(char* theWord)
 {
     int left = 0;
     int right = strlen(theWord) - 1;
@@ -13,13 +13,15 @@ void is_palindrome(char *theWord)
     {
         if (theWord[left] != theWord[right])
         {
-            printf("\"%s\" is not palindrome.\n", theWord);
-            return;
+            // du ville ha en bool ja :/
+            return false;
+            printf("The word is not a palindrome\n");
         }
         left++;
         right--;
     }
-    printf("\"%s\" is palindrome.\n", theWord);
+    return true;
+    printf("The word is a palindrome\n");
 
 }
 void string_reverse(char* theWord)
@@ -41,7 +43,10 @@ int main(void)
     gets(theWord);
     size_t length = strlen(theWord);
     printf("The word contains %zu letters\n", length);
-    is_palindrome(theWord);
+    if (is_palindrome(theWord))
+        printf("The word is a palindrome\n");
+    else
+        printf("The word is not a palindrome\n");
     string_reverse(theWord);
     printf("The word reversed is '%s'", theWord);
     return 0;
