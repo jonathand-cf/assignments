@@ -1,37 +1,33 @@
 #include <stdio.h>
-#define ID_LENGTH 9999999
-#define NAME_SIZE 100
+#include <stdlib.h>
+#include <string.h>
+#include "studentInfo.h"
 
-int getStuddentInfo(struct StudentInfo* studentInfo)
+int main()
 {
-    printf("Enter student ID:\n");
-    fgets(studentID, ID_LENGTH, stdin);
-    printf("Enter student name:\n");
-    fgets(studentName, NAME_SIZE, stdin);
-    printf("Enter student age:\n");
-    fgets(studentAge, NAME_SIZE, stdin);
+    studentInfo_t studentInfo;  // Create an instance of the studentInfo_t struct
+
+    // Clear the studentName and studentID arrays
+    memset(studentInfo.studentName, 0, NAME_SIZE);
+    memset(studentInfo.studentID, 0, ID_LENGTH);
+
+    // Prompt for student information
+    printf("Please enter your ID (e.g., 3872187):\n");
+    fgets(studentInfo.studentID, ID_LENGTH, stdin);
+    studentInfo.studentID[strcspn(studentInfo.studentID, "\n")] = '\0';  // Remove newline character
+
+    printf("Please enter your name (e.g., John Doe):\n");
+    fgets(studentInfo.studentName, NAME_SIZE, stdin);
+    studentInfo.studentName[strcspn(studentInfo.studentName, "\n")] = '\0';  // Remove newline character
+
+    printf("Please enter your age (e.g., 21):\n");
+    scanf("%d", &studentInfo.studentAge);
+
+    // Display the student information
+    printf("\nStudent Information:\n");
+    printf("ID: %s\n", studentInfo.studentID);
+    printf("Name: %s\n", studentInfo.studentName);
+    printf("Age: %d\n", studentInfo.studentAge);
+
+    return 0;
 }
-int printStudentInfo(struct StudentInfo* studentInfo)
-{
-    printf("Student id: %s\n", studenID);
-    printf("Name: %zu\n", studentName);
-    printf("Age: %d\n", studentAge);
-}
-
-int main(void)
-{
-    getStuddentInfo();
-
-}
-
-
-/*
-Write an application that asks the user for the following student information (in this order):
-Student id
-Example: 3872187
-Name
-Example: John Doe
-Age
-Example: 21
-Then prints the information back to the user.
-*/
