@@ -5,7 +5,7 @@
 
 int main()
 {
-    studentInfo_t studentInfo;  // Create an instance of the studentInfo_t struct
+    student_t studentInfo;  // Create an instance of the studentInfo_t struct
 
     // Clear the studentName and studentID arrays
     memset(studentInfo.studentName, 0, NAME_SIZE);
@@ -25,7 +25,7 @@ int main()
 
     // Display the student information
     printf("\nStudent Information:\n");
-    printf("ID: %s\n", studentInfo.studentID);
+    printf("Student id: %s\n", studentInfo.studentID);
     printf("Name: %s\n", studentInfo.studentName);
     printf("Age: %d\n", studentInfo.studentAge);
 
