@@ -4,7 +4,7 @@
 
 #ifndef STUDENT_H
 #define STUDENT_H
-#define NAME_LENGTH 20
+#define NAME_LENGTH 100
 
 typedef struct
 {

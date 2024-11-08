@@ -19,7 +19,8 @@ int main()
     while (1)
     {
         printf("Enter name: ");
-        scanf("%99s", name);
+        fgets(name, sizeof(name), stdin);
+        name[strcspn(name, "\n")] = 0; // Remove the newline character if present
 
         if (strcmp(name, "stop") == 0)
         {
@@ -27,7 +28,12 @@ int main()
         }
 
         printf("Enter age: ");
-        scanf("%d", &age);
+        if (scanf("%d", &age) != 1) {
+            printf("Invalid input. Please enter a valid age.\n");
+            while (getchar() != '\n'); // Clear the input buffer
+            continue;
+        }
+        getchar(); // Consume the newline character left by scanf
 
         students = realloc(students, (count + 1) * sizeof(Student_t));
         if (students == NULL)
